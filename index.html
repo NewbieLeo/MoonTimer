@@ -85,7 +85,7 @@
                 var h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 var m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 var s = Math.floor((distance % (1000 * 60)) / 1000);
-                var ms = Math.floor(distance % 100);
+                var ms = parseInt(Math.floor(distance % 1000) / 10);
 
                 document.getElementById("d-day").innerHTML = "" + pad(d,2) + "일 " + pad(h,2) + "시간 " + pad(m,2) + "분 " + pad(s,2) + "초 " +pad(ms,2) + "";
             }, 25);
