@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <!-- Noto Sans SC(간체자 폰트) -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500&display=swap" rel="stylesheet">
+        <!-- NanumSquare(한글 폰트) -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
+        
+        <style>
+            body {
+                background-image: url(./moon.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                backdrop-filter: blur(8px);
+                backdrop-filter: brightness(30%);
+            }
+
+            .hwohwohwo {
+                position: absolute;
+                display: flex;
+                white-space: nowrap;
+                /* text-align: center; */
+                color: darkred;
+                font-family: "Noto Sans SC";
+                font-size: 70px;
+                filter: drop-shadow(0px 0px 10px);
+                top: 30%;
+                left: 50%;
+                transform: translate(-50%, -50%)
+            }
+
+            #d-day {
+                position: absolute;
+                display: flex;
+                white-space: nowrap;
+                color: white;
+                font-family: "NanumSquare";
+                font-size: 60px;
+                top: 75%;
+                left: 50%;
+                transform: translate(-50%, -50%)
+            }
+
+            .timeLeft {
+                position: absolute;
+                display: flex;
+                white-space: nowrap;
+                text-align: center;
+                color: lightgray;
+                font-family: "NanumSquare";
+                font-size: 30px;
+                top: 60%;
+                left: 50%;
+                transform: translate(-50%, -50%)
+            }
+
+            .box {
+                position: absolute;
+                display: flex;
+                background-color: rgba(169, 169, 169, 0.15);
+                /* backdrop-filter: */
+                border-radius: 50px;
+                width: 1000px;
+                height: 600px;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%)
+            }
+        </style>
+        <script>
+            function pad(n, width) {
+                n = n + '';
+                return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+            }
+            
+            var dday = new Date("May 10, 2022 00:00:00").getTime();
+            var now = new Date().getTime();
+
+            var distance = dday - now;
+            setInterval(function() {
+                var now = new Date().getTime(); // 종료일자에서 현재일자를 뺀 시간
+                var distance = (dday - now > 0 ? dday-now : 0);
+                var d = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var s = Math.floor((distance % (1000 * 60)) / 1000);
+                var ms = Math.floor(distance % 100);
+
+                document.getElementById("d-day").innerHTML = "" + pad(d,2) + "일 " + pad(h,2) + "시간 " + pad(m,2) + "분 " + pad(s,2) + "초 " +pad(ms,2) + "";
+            }, 25);
+        </script>
+    </head>
+    <body>
+        <div class="box">
+            <div class="hwohwohwo">"中国是像山峰一样的国家"</div> <!-- 중국은 높은 산봉우리 같은 나라 China jiayou -->
+            <div class="timeLeft">대한민국 19대 대통령 문재인<br/>임기 종료까지:</div>
+            <div id="d-day"></div>
+        </div>
+    </body>
+</html>
